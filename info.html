@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Info - Valentine's Day</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff4e88, #ff1e56, #ff6f91);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ===== TITRES ===== */
+h1 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #ffe0f0;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+}
+
+h2 {
+    font-size: 32px;
+    margin: 20px 0 10px 0;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+h3 {
+    font-size: 24px;
+    margin: 15px 0;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+/* ===== PARAGRAPHES ===== */
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    background: rgba(255,255,255,0.1); /* fond semi-transparent */
+    padding: 15px 20px;
+    border-radius: 20px;
+}
+
+/* ===== BOUTON RETOUR ===== */
+#btnBack {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: hotpink;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+#btnBack:hover {
+    background: hotpink;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* ===== IMAGE ===== */
+img {
+    max-width: 180px;
+    width: 80%;
+    height: auto;
+    border-radius: 20px;
+    margin: 20px 0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255,192,203,0.5);
+}
+
+/* ===== FORMULAIRE ===== */
+.form-box {
+    background: #14000c;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px auto 50px auto;
+    width: 600px;
+    max-width: 95%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.form-box label {
+    display: block;
+    margin: 10px 0;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-box input[type="text"], 
+.form-box input[type="checkbox"] {
+    transition: 0.3s;
+}
+
+.form-box input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px hotpink;
+}
+
+button[type="submit"] {
+    margin-top: 15px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    background: hotpink;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: white;
+    color: hotpink;
+    transform: translateY(-3px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 650px) {
+    .form-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 { font-size: 28px; }
+    h3 { font-size: 20px; }
+    p { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== BOUTON RETOUR ===== -->
+<button id="btnBack">&larr;</button>
+
+<!-- ===== TITRE + IMAGE ===== -->
+<h1>Hi love, („• ֊ •„)੭</h1>
+
+<img src="https://i.pinimg.com/736x/1e/d8/b0/1ed8b0e1a43a3e17a83b3a154b19dca7.jpg" alt="Cute Valentine">
+
+<!-- ===== TEXTE ===== -->
+<p>
+Cutiepie, this is our first Valentine's Day together. <br>
+I know it doesn't mean much to you, but I hope to spend many more with you.<br>
+But tbh, what I hope for most is to be by your side and spend quality time with you.<br>
+That's better than gifts. .·°՞(っ-ᯅ-ς)՞°·.
+</p>
+
+<h2 style="margin-top:40px;">A few questions for you ( ՞ ܸ. .ܸ՞ )</h2>
+<p><em>What would you like to do with me today?</em></p>
+
+<!-- ===== FORMULAIRE ===== -->
+<div class="form-box">
+    <form action="https://formsubmit.co/rhezrani.ayla04@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Valentine's Day Answers">
+
+        <label><input type="checkbox" name="activities[]" value="Draw together"> Draw together ✐ᝰ.</label>
+        <label><input type="checkbox" name="activities[]" value="Watch something together"> Watch something together [ ▶︎]</label>
+        <label><input type="checkbox" name="activities[]" value="Play a video game together"> Play a video game together ᯤ</label>
+        <label><input type="checkbox" name="activities[]" value="Cook something together"> Cook something together 𓌉◯𓇋</label>
+        <label><input type="checkbox" name="activities[]" value="Read something together"> Read something together 🕮</label>
+        <label>Other: <input type="text" name="Other activity" placeholder="Tell me what you'd like..."></label>
+
+        <button type="submit">Send 𓂃✍︎</button>
+    </form>
+</div>
+
+<script>
+// Redirige le bouton "Retour" vers index.html
+document.getElementById('btnBack').addEventListener('click', () => {
+    window.location.href = 'index.html';
+});
+</script>
+
+</body>
+</html>
