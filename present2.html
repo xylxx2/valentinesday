@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Second Present</title>
+
 <style>
 * { box-sizing: border-box; }
 
@@ -17,12 +18,11 @@ body {
     padding:40px;
     color:white;
     text-align:center;
-    flex-direction:column;
     position: relative;
     overflow: hidden;
 }
 
-/* Canvas arrière-plan cœurs */
+/* Canvas arrière-plan */
 #heartsCanvas {
     position: fixed;
     top: 0;
@@ -33,7 +33,7 @@ body {
     z-index: 0;
 }
 
-/* Bouton retour en haut à gauche */
+/* Bouton retour */
 .back-btn {
     position: fixed;
     top: 20px;
@@ -54,10 +54,17 @@ body {
 .back-btn:hover {
     background: white;
     color: hotpink;
-    transform: translateY(-2px);
 }
 
-/* Cadre pour la photo + texte */
+/* Layout principal */
+.main-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    z-index: 1;
+}
+
+/* Carte Milo */
 .card {
     background: rgba(255,255,255,0.1);
     border: 3px solid white;
@@ -65,12 +72,10 @@ body {
     padding: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     max-width: 400px;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 1;
 }
 
 .card img {
@@ -80,7 +85,6 @@ body {
     margin-bottom: 15px;
 }
 
-/* Texte style bande dessinée */
 .card .message {
     font-size: 16px;
     font-weight: bold;
@@ -91,32 +95,155 @@ body {
     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
+/* Gift section */
+.gift-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gift-section img {
+    width: 240px; /* plus grande */
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.gift-section:hover img {
+    transform: scale(1.07);
+}
+
+.gift-text {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.here-text {
+    font-size: 15px;
+    opacity: 0.85;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index: 10;
+    animation: fadeIn 0.4s ease;
+}
+
+.popup.hidden {
+    display:none;
+}
+
+.popup-content {
+    text-align:center;
+    animation: pop 0.5s ease;
+    position: relative;
+}
+
+.popup-content img {
+    width: 380px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.close {
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    font-size:40px;
+    cursor:pointer;
+    color:white;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@keyframes pop {
+    0% {transform:scale(0);}
+    80% {transform:scale(1.1);}
+    100% {transform:scale(1);}
+}
+
 /* Responsive */
-@media (max-width: 500px) {
-    .card { max-width: 90%; }
-    .card .message { font-size: 14px; padding: 8px; }
-    .back-btn { padding: 8px 16px; font-size: 14px; }
+@media (max-width: 800px) {
+    .main-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
 }
 </style>
 </head>
+
 <body>
 
-<!-- Canvas pour cœurs -->
 <canvas id="heartsCanvas"></canvas>
 
-<!-- Bouton retour -->
 <button class="back-btn" onclick="location.href='index.html'">← Back</button>
 
-<!-- Contenu central -->
-<div class="card">
-    <img src="tired-milo.png" alt="Second Present Photo">
-    <div class="message">
-        Website under development, please come back on February 26, 2026 ദ്ദി◝ ⩊ ◜.ᐟ 🚧
+<div class="main-wrapper">
+
+    <!-- Carte Milo -->
+    <div class="card">
+        <img src="happy-milo.png" alt="Happy Milo">
+        <div class="message">
+            ── ⋆⋅☆⋅⋆ Oh hi, welcome back! ⋆⋅☆⋅⋆ ── <br>
+            𝑯𝒂𝒑𝒑𝒚 𝒃𝒊𝒓𝒕𝒉𝒅𝒂𝒚 ﾒ૦ﾒ૦
+        </div>
+    </div>
+
+    <!-- Section Gift -->
+    <div class="gift-section" id="giftTrigger">
+        <img src="naya.jpeg" alt="Open Gift">
+        <div class="gift-text">open your gift</div>
+        <div class="here-text">here for u cutie pie 💗</div>
+    </div>
+
+</div>
+
+<!-- Popup -->
+<div class="popup hidden" id="popup">
+    <div class="popup-content">
+        <div class="close" id="closePopup">&times;</div>
+        <img src="gift.jpeg">
     </div>
 </div>
 
 <script>
-// Cœurs animés
+const giftTrigger = document.getElementById("giftTrigger");
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("closePopup");
+
+giftTrigger.addEventListener("click", () => {
+    popup.classList.remove("hidden");
+});
+
+closePopup.addEventListener("click", () => {
+    popup.classList.add("hidden");
+});
+
+window.addEventListener("click", (e) => {
+    if (e.target === popup) {
+        popup.classList.add("hidden");
+    }
+});
+
+/* Cœurs animés */
 const canvas = document.getElementById('heartsCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -129,9 +256,7 @@ window.addEventListener('resize', () => {
 });
 
 const hearts = [];
-const heartCount = 50;
-
-for (let i = 0; i < heartCount; i++) {
+for (let i = 0; i < 50; i++) {
     hearts.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -165,8 +290,6 @@ function animate() {
         h.x += Math.sin(h.angle) * 0.5;
         h.angle += 0.02;
         if (h.y + h.size < 0) h.y = canvas.height + h.size;
-        if (h.x - h.size > canvas.width) h.x = -h.size;
-        if (h.x + h.size < 0) h.x = canvas.width + h.size;
         drawHeart(h.x, h.y, h.size, h.alpha);
     });
     requestAnimationFrame(animate);
