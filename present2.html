@@ -56,6 +56,23 @@ body {
     color: hotpink;
 }
 
+/* Countdown */
+.countdown {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 18px;
+    background: rgba(255,255,255,0.2);
+    padding: 10px 22px;
+    border-radius: 25px;
+    backdrop-filter: blur(6px);
+    border: 2px solid white;
+    z-index: 2;
+    letter-spacing: 1px;
+}
+
 /* Layout principal */
 .main-wrapper {
     display: flex;
@@ -105,7 +122,7 @@ body {
 }
 
 .gift-section img {
-    width: 240px; /* plus grande */
+    width: 240px;
     border-radius: 25px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     margin-bottom: 10px;
@@ -196,6 +213,8 @@ body {
 
 <button class="back-btn" onclick="location.href='index.html'">← Back</button>
 
+<div class="countdown" id="countdown">⏳ Loading...</div>
+
 <div class="main-wrapper">
 
     <!-- Carte Milo -->
@@ -225,6 +244,33 @@ body {
 </div>
 
 <script>
+
+/* Countdown */
+const countdownElement = document.getElementById("countdown");
+const targetDate = new Date("February 26, 2026 00:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+        countdownElement.innerHTML = "HAPPY BIRTHDAY BESTIE";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.innerHTML =
+        `⏱ ${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* Popup */
 const giftTrigger = document.getElementById("giftTrigger");
 const popup = document.getElementById("popup");
 const closePopup = document.getElementById("closePopup");
@@ -296,9 +342,8 @@ function animate() {
 }
 
 animate();
+
 </script>
 
 </body>
 </html>
-
-
